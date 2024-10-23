@@ -31,7 +31,7 @@
         box.style.transform = 'scale(0.8)'; // Start smaller
         box.innerHTML = `<strong>Make by Bacon But Pro:</strong> ${message}`;
 
-        // Add keyframe animation styles
+        // Add keyframe animation styles and media queries for responsiveness
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes bounceIn {
@@ -47,6 +47,25 @@
             @keyframes slideOutShrink {
                 0% { opacity: 1; right: 20px; transform: scale(1); }
                 100% { opacity: 0; right: -300px; transform: scale(0.8); }
+            }
+            
+            /* Media query for smaller screens */
+            @media (max-width: 600px) {
+                div {
+                    font-size: 12px; /* Smaller font on mobile */
+                    padding: 10px;    /* Adjust padding */
+                    right: -250px;    /* Start slightly closer */
+                    bottom: 10px;     /* Bring it closer to bottom */
+                }
+                @keyframes bounceIn {
+                    0% { transform: scale(0.8); opacity: 0; right: -250px; }
+                    50% { transform: scale(1.1); right: 10px; opacity: 1; }
+                    100% { transform: scale(1); }
+                }
+                @keyframes slideOutShrink {
+                    0% { opacity: 1; right: 10px; transform: scale(1); }
+                    100% { opacity: 0; right: -250px; transform: scale(0.8); }
+                }
             }
         `;
         document.head.appendChild(style);
